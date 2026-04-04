@@ -8,6 +8,6 @@ export class JsonChainRepository implements ChainRepository {
 
   getAll(): Chain[] { return this.chains; }
   getById(chainId: number): Chain | undefined { return this.byId.get(chainId); }
-  getByEcosystem(ecosystem: "evm" | "solana" | "bitcoin"): Chain[] { return this.chains.filter((c) => c.ecosystem === ecosystem); }
+  getByEcosystem(ecosystem: Chain["ecosystem"]): Chain[] { return this.chains.filter((c) => c.ecosystem === ecosystem); }
   getByNetworkType(testnet: boolean): Chain[] { return this.chains.filter((c) => c.testnet === testnet); }
 }

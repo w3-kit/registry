@@ -1,5 +1,6 @@
 // Domain types (public)
-export type { Chain } from "./domain/entities/chain.js";
+import type { Chain } from "./domain/entities/chain.js";
+export type { Chain };
 export type { Token } from "./domain/entities/token.js";
 export type { ChainRepository } from "./domain/repositories/chain-repository.js";
 export type { TokenRepository } from "./domain/repositories/token-repository.js";
@@ -26,7 +27,7 @@ import { listTokens as _listTokens } from "./application/list-tokens.js";
 
 export function getAllChains() { return _listChains(chainRepo); }
 export function getChain(chainId: number) { return _getChain(chainRepo, chainId); }
-export function getChainsByEcosystem(ecosystem: "evm" | "solana" | "bitcoin") { return _listChains(chainRepo, { ecosystem }); }
+export function getChainsByEcosystem(ecosystem: Chain["ecosystem"]) { return _listChains(chainRepo, { ecosystem }); }
 export function getAllTokens() { return _listTokens(tokenRepo); }
 export function getToken(symbol: string) { return _getToken(tokenRepo, symbol); }
 export function getTokensByChain(chainId: number) { return _listTokens(tokenRepo, { chainId }); }
