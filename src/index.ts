@@ -25,9 +25,21 @@ import { listChains as _listChains } from "./application/list-chains.js";
 import { getToken as _getToken } from "./application/get-token.js";
 import { listTokens as _listTokens } from "./application/list-tokens.js";
 
-export function getAllChains() { return _listChains(chainRepo); }
-export function getChain(chainId: number) { return _getChain(chainRepo, chainId); }
-export function getChainsByEcosystem(ecosystem: Chain["ecosystem"]) { return _listChains(chainRepo, { ecosystem }); }
-export function getAllTokens() { return _listTokens(tokenRepo); }
-export function getToken(symbol: string) { return _getToken(tokenRepo, symbol); }
-export function getTokensByChain(chainId: number) { return _listTokens(tokenRepo, { chainId }); }
+export function getAllChains() {
+  return _listChains(chainRepo);
+}
+export function getChain(chainId: number) {
+  return _getChain(chainRepo, chainId);
+}
+export function getChainsByEcosystem(ecosystem: Chain["ecosystem"]) {
+  return _listChains(chainRepo, { ecosystem });
+}
+export function getAllTokens() {
+  return _listTokens(tokenRepo);
+}
+export function getToken(symbol: string) {
+  return _getToken(tokenRepo, symbol);
+}
+export function getTokensByChain(chainId: number) {
+  return _listTokens(tokenRepo, { chainId });
+}
