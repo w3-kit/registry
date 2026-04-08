@@ -30,6 +30,22 @@ This repo uses Domain-Driven Design (DDD):
 
 **Import rules:** domain imports nothing, application uses domain, infrastructure implements domain interfaces.
 
+## Local development
+
+```bash
+git clone https://github.com/YOUR_USERNAME/registry.git
+cd registry
+npm install
+npm run build
+npm test
+```
+
+### Run all CI checks locally
+
+```bash
+npm run typecheck && npm run lint && npm run format:check && npm run build && npm test
+```
+
 ## Adding a chain
 
 Add an entry to `data/chains.json`:

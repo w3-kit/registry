@@ -1,5 +1,9 @@
 # @w3-kit/registry
 
+[![CI](https://github.com/w3-kit/registry/actions/workflows/ci.yml/badge.svg)](https://github.com/w3-kit/registry/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@w3-kit/registry)](https://www.npmjs.com/package/@w3-kit/registry)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
 Chain, token, and ABI registry for web3 development.
 
 ## Install
