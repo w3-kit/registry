@@ -1,6 +1,9 @@
 import type { Chain } from "../domain/entities/chain.js";
 import type { ChainRepository } from "../domain/repositories/chain-repository.js";
-export interface ChainFilter { ecosystem?: Chain["ecosystem"]; testnet?: boolean; }
+export interface ChainFilter {
+  ecosystem?: Chain["ecosystem"];
+  testnet?: boolean;
+}
 export function listChains(repo: ChainRepository, filter?: ChainFilter): Chain[] {
   let chains = repo.getAll();
   if (filter?.ecosystem) chains = chains.filter((c) => c.ecosystem === filter.ecosystem);
