@@ -189,7 +189,7 @@
     "nativeCurrency": { "name": "Aptos Coin", "symbol": "APT", "decimals": 8 },
     "rpcUrls": [
       { "url": "https://fullnode.mainnet.aptoslabs.com/v1", "provider": "Aptos", "public": true },
-      { "url": "https://aptos-mainnet.public.blastapi.io", "provider": "BlastAPI", "public": true }
+      { "url": "https://aptos.api.onfinality.io/v1/public", "provider": "OnFinality", "public": true }
     ],
     "blockExplorers": ["https://aptoscan.com", "https://explorer.aptoslabs.com"],
     "faucets": [],

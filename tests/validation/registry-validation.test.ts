@@ -23,10 +23,23 @@ describe("registry validation", () => {
     });
   });
 
+  it("rejects chains without two public RPC fallbacks", () => {
+    const data = cloneRegistryData();
+    data.chains[0].rpcUrls = data.chains[0].rpcUrls.map((rpc) => ({
+      ...rpc,
+      public: false,
+    }));
+
+    const issues = validateRegistryData(data);
+
+    expect(formatValidationIssues(issues)).toContain(
+      "chains.json:[0].rpcUrls - At least two public RPC URLs are required",
+    );
+  });
+
   it("covers the core stablecoins on EVM mainnets with canonical deployments", () => {
-    // zkSync Era has no issuer-published or explorer-confirmed DAI deployment.
     const evmMainnetIds = chainsData
-      .filter((chain) => chain.ecosystem === "evm" && !chain.testnet && chain.chainId !== 324)
+      .filter((chain) => chain.ecosystem === "evm" && !chain.testnet)
       .map((chain) => chain.chainId);
     const stablecoins = new Map(
       tokensData

@@ -68,11 +68,14 @@ These endpoints are best-effort public services for development, examples, and f
 
 USDC, USDT, and DAI entries use the issuer's native deployment when one is published for a supported chain, or the canonical contract recorded by that chain's block explorer. Testnet addresses are for testing only. A token is not added to a chain when the issuer does not publish a deployment there; the registry does not use placeholder or guessed addresses.
 
+Some registered networks do not have all three assets: Solana Devnet has no canonical USDT or DAI deployment, and the registry has no reliable DAI deployment for Sui or Aptos. Those omissions are intentional and should be treated as unavailable data rather than as permission to substitute an unrelated token.
+
 Primary sources:
 
 - [Circle USDC contract addresses](https://developers.circle.com/stablecoins/usdc-contract-addresses)
 - [Tether supported protocols](https://tether.to/en/supported-protocols)
 - [Sky Protocol DAI documentation](https://developers.sky.money/protocol/tokens/dai) and [Maker deployment directory](https://chainlog.makerdao.com/)
+- [PublicNode RPC endpoints](https://publicnode.com/) and [OnFinality Aptos RPC](https://onfinality.io/en/networks/aptos)
 
 ## API
 

@@ -13,6 +13,18 @@ export const rpcUrlSchema = z.object({
   public: z.boolean(),
 });
 
+export const rpcUrlsSchema = z
+  .array(rpcUrlSchema)
+  .min(2)
+  .superRefine((rpcUrls, ctx) => {
+    if (rpcUrls.filter((rpc) => rpc.public).length < 2) {
+      ctx.addIssue({
+        code: "custom",
+        message: "At least two public RPC URLs are required",
+      });
+    }
+  });
+
 export const chainSchema = z
   .object({
     chainId: chainIdSchema,
@@ -25,7 +37,7 @@ export const chainSchema = z
       symbol: nonEmptyStringSchema,
       decimals: z.number().int().nonnegative(),
     }),
-    rpcUrls: z.array(rpcUrlSchema).min(2),
+    rpcUrls: rpcUrlsSchema,
     blockExplorers: z.array(httpUrlSchema),
     faucets: z.array(httpUrlSchema),
     testnet: z.boolean(),
