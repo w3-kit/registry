@@ -5,7 +5,10 @@
     "shortName": "eth",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-    "rpcUrls": ["https://eth.llamarpc.com", "https://rpc.ankr.com/eth"],
+    "rpcUrls": [
+      { "url": "https://eth.llamarpc.com", "provider": "LlamaRPC", "public": true },
+      { "url": "https://ethereum-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://etherscan.io"],
     "faucets": [],
     "testnet": false,
@@ -17,7 +20,10 @@
     "shortName": "base",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-    "rpcUrls": ["https://mainnet.base.org", "https://base.llamarpc.com"],
+    "rpcUrls": [
+      { "url": "https://mainnet.base.org", "provider": "Base", "public": true },
+      { "url": "https://base-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://basescan.org"],
     "faucets": [],
     "testnet": false,
@@ -29,7 +35,10 @@
     "shortName": "arb1",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-    "rpcUrls": ["https://arb1.arbitrum.io/rpc", "https://rpc.ankr.com/arbitrum"],
+    "rpcUrls": [
+      { "url": "https://arb1.arbitrum.io/rpc", "provider": "Arbitrum", "public": true },
+      { "url": "https://arbitrum-one-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://arbiscan.io"],
     "faucets": [],
     "testnet": false,
@@ -41,7 +50,10 @@
     "shortName": "oeth",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-    "rpcUrls": ["https://mainnet.optimism.io", "https://rpc.ankr.com/optimism"],
+    "rpcUrls": [
+      { "url": "https://mainnet.optimism.io", "provider": "Optimism", "public": true },
+      { "url": "https://optimism-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://optimistic.etherscan.io"],
     "faucets": [],
     "testnet": false,
@@ -53,7 +65,10 @@
     "shortName": "matic",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "POL", "symbol": "POL", "decimals": 18 },
-    "rpcUrls": ["https://polygon-rpc.com", "https://rpc.ankr.com/polygon"],
+    "rpcUrls": [
+      { "url": "https://polygon-rpc.com", "provider": "Polygon", "public": true },
+      { "url": "https://polygon-bor-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://polygonscan.com"],
     "faucets": [],
     "testnet": false,
@@ -65,7 +80,10 @@
     "shortName": "bsc",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "BNB", "symbol": "BNB", "decimals": 18 },
-    "rpcUrls": ["https://bsc-dataseed.binance.org", "https://rpc.ankr.com/bsc"],
+    "rpcUrls": [
+      { "url": "https://bsc-dataseed.binance.org", "provider": "BNB Chain", "public": true },
+      { "url": "https://bsc-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://bscscan.com"],
     "faucets": [],
     "testnet": false,
@@ -77,7 +95,10 @@
     "shortName": "avax",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Avalanche", "symbol": "AVAX", "decimals": 18 },
-    "rpcUrls": ["https://api.avax.network/ext/bc/C/rpc", "https://rpc.ankr.com/avalanche"],
+    "rpcUrls": [
+      { "url": "https://api.avax.network/ext/bc/C/rpc", "provider": "Avalanche", "public": true },
+      { "url": "https://avalanche-c-chain-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://snowtrace.io"],
     "faucets": [],
     "testnet": false,
@@ -89,7 +110,10 @@
     "shortName": "ftm",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Fantom", "symbol": "FTM", "decimals": 18 },
-    "rpcUrls": ["https://rpc.ftm.tools", "https://rpc.ankr.com/fantom"],
+    "rpcUrls": [
+      { "url": "https://rpcapi.fantom.network", "provider": "Fantom", "public": true },
+      { "url": "https://fantom-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://ftmscan.com"],
     "faucets": [],
     "testnet": false,
@@ -102,7 +126,10 @@
     "ecosystem": "solana",
     "cluster": "mainnet-beta",
     "nativeCurrency": { "name": "SOL", "symbol": "SOL", "decimals": 9 },
-    "rpcUrls": ["https://api.mainnet-beta.solana.com"],
+    "rpcUrls": [
+      { "url": "https://api.mainnet-beta.solana.com", "provider": "Solana", "public": true },
+      { "url": "https://solana-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://explorer.solana.com", "https://solscan.io"],
     "faucets": [],
     "testnet": false,
@@ -115,7 +142,10 @@
     "ecosystem": "solana",
     "cluster": "devnet",
     "nativeCurrency": { "name": "SOL", "symbol": "SOL", "decimals": 9 },
-    "rpcUrls": ["https://api.devnet.solana.com"],
+    "rpcUrls": [
+      { "url": "https://api.devnet.solana.com", "provider": "Solana", "public": true },
+      { "url": "https://solana-devnet-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://explorer.solana.com/?cluster=devnet"],
     "faucets": ["https://faucet.solana.com"],
     "testnet": true,
@@ -127,7 +157,10 @@
     "shortName": "zksync",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-    "rpcUrls": ["https://mainnet.era.zksync.io"],
+    "rpcUrls": [
+      { "url": "https://mainnet.era.zksync.io", "provider": "zkSync", "public": true },
+      { "url": "https://zksync-era-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://explorer.zksync.io"],
     "faucets": [],
     "testnet": false,
@@ -139,7 +172,10 @@
     "shortName": "sui",
     "ecosystem": "sui",
     "nativeCurrency": { "name": "SUI", "symbol": "SUI", "decimals": 9 },
-    "rpcUrls": ["https://fullnode.mainnet.sui.io"],
+    "rpcUrls": [
+      { "url": "https://fullnode.mainnet.sui.io", "provider": "Sui", "public": true },
+      { "url": "https://sui-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://suiscan.xyz", "https://suiexplorer.com"],
     "faucets": [],
     "testnet": false,
@@ -151,7 +187,10 @@
     "shortName": "apt",
     "ecosystem": "aptos",
     "nativeCurrency": { "name": "Aptos Coin", "symbol": "APT", "decimals": 8 },
-    "rpcUrls": ["https://fullnode.mainnet.aptoslabs.com"],
+    "rpcUrls": [
+      { "url": "https://fullnode.mainnet.aptoslabs.com/v1", "provider": "Aptos", "public": true },
+      { "url": "https://aptos-mainnet.public.blastapi.io", "provider": "BlastAPI", "public": true }
+    ],
     "blockExplorers": ["https://aptoscan.com", "https://explorer.aptoslabs.com"],
     "faucets": [],
     "testnet": false,
@@ -163,7 +202,10 @@
     "shortName": "sep",
     "ecosystem": "evm",
     "nativeCurrency": { "name": "Sepolia Ether", "symbol": "ETH", "decimals": 18 },
-    "rpcUrls": ["https://rpc.sepolia.org"],
+    "rpcUrls": [
+      { "url": "https://rpc.sepolia.org", "provider": "Sepolia", "public": true },
+      { "url": "https://ethereum-sepolia-rpc.publicnode.com", "provider": "PublicNode", "public": true }
+    ],
     "blockExplorers": ["https://sepolia.etherscan.io"],
     "faucets": ["https://sepoliafaucet.com"],
     "testnet": true,

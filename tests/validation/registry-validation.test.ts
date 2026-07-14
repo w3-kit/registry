@@ -13,6 +13,34 @@ describe("registry validation", () => {
     expect(validateRegistry()).toEqual([]);
   });
 
+  it("provides two public RPC fallbacks for every chain", () => {
+    chainsData.forEach((chain) => {
+      expect(chain.rpcUrls.length, chain.name).toBeGreaterThanOrEqual(2);
+      expect(chain.rpcUrls.every((rpc) => rpc.public), chain.name).toBe(true);
+      expect(new Set(chain.rpcUrls.map((rpc) => rpc.provider)).size, chain.name).toBe(
+        chain.rpcUrls.length,
+      );
+    });
+  });
+
+  it("covers the core stablecoins on EVM mainnets with canonical deployments", () => {
+    // zkSync Era has no issuer-published or explorer-confirmed DAI deployment.
+    const evmMainnetIds = chainsData
+      .filter((chain) => chain.ecosystem === "evm" && !chain.testnet && chain.chainId !== 324)
+      .map((chain) => chain.chainId);
+    const stablecoins = new Map(
+      tokensData
+        .filter((token) => ["USDC", "USDT", "DAI"].includes(token.symbol))
+        .map((token) => [token.symbol, new Set(token.chains.map((entry) => entry.chainId))]),
+    );
+
+    for (const symbol of ["USDC", "USDT", "DAI"]) {
+      const tokenChains = stablecoins.get(symbol);
+      expect(tokenChains, symbol).toBeDefined();
+      expect(evmMainnetIds.every((chainId) => tokenChains?.has(chainId)), symbol).toBe(true);
+    }
+  });
+
   it("reports missing required fields", () => {
     const data = cloneRegistryData();
     delete data.chains[0].name;

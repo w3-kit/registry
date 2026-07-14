@@ -7,6 +7,12 @@ import {
   solanaClusterSchema,
 } from "./shared.js";
 
+export const rpcUrlSchema = z.object({
+  url: httpUrlSchema,
+  provider: nonEmptyStringSchema,
+  public: z.boolean(),
+});
+
 export const chainSchema = z
   .object({
     chainId: chainIdSchema,
@@ -19,7 +25,7 @@ export const chainSchema = z
       symbol: nonEmptyStringSchema,
       decimals: z.number().int().nonnegative(),
     }),
-    rpcUrls: z.array(httpUrlSchema),
+    rpcUrls: z.array(rpcUrlSchema).min(2),
     blockExplorers: z.array(httpUrlSchema),
     faucets: z.array(httpUrlSchema),
     testnet: z.boolean(),

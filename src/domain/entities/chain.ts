@@ -1,5 +1,11 @@
 import type { SolanaCluster } from "../value-objects/solana-cluster.js";
 
+export interface RpcUrl {
+  url: string;
+  provider: string;
+  public: boolean;
+}
+
 export interface Chain {
   chainId: number;
   name: string;
@@ -7,7 +13,7 @@ export interface Chain {
   ecosystem: "evm" | "solana" | "bitcoin" | "sui" | "aptos";
   cluster?: SolanaCluster;
   nativeCurrency: { name: string; symbol: string; decimals: number };
-  rpcUrls: string[];
+  rpcUrls: RpcUrl[];
   blockExplorers: string[];
   faucets: string[];
   testnet: boolean;
