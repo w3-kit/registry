@@ -55,11 +55,11 @@ The validator checks schema shape, URLs, chain references, duplicate identifiers
 
 ## RPC fallbacks
 
-Each chain exposes at least two RPC entries. Every entry includes the endpoint URL, provider name, and a `public` flag so consumers can select public fallbacks explicitly:
+`chain.rpcUrls` remains a `string[]` for backwards compatibility. Each chain also exposes at least two structured `rpcEndpoints`, with the endpoint URL, provider name, and a `public` flag so consumers can select public fallbacks explicitly:
 
 ```ts
 const chain = getChain(1);
-const publicRpcs = chain?.rpcUrls.filter((rpc) => rpc.public) ?? [];
+const publicRpcs = chain?.rpcEndpoints.filter((rpc) => rpc.public) ?? [];
 ```
 
 These endpoints are best-effort public services for development, examples, and fallback access. They may be rate-limited or unavailable and should not be treated as production infrastructure. Applications should provide their own managed RPC endpoint for production traffic.
@@ -68,7 +68,7 @@ These endpoints are best-effort public services for development, examples, and f
 
 USDC, USDT, and DAI entries use the issuer's native deployment when one is published for a supported chain, or the canonical contract recorded by that chain's block explorer. Testnet addresses are for testing only. A token is not added to a chain when the issuer does not publish a deployment there; the registry does not use placeholder or guessed addresses.
 
-Some registered networks do not have all three assets: Solana Devnet has no canonical USDT or DAI deployment, and the registry has no reliable DAI deployment for Sui or Aptos. Those omissions are intentional and should be treated as unavailable data rather than as permission to substitute an unrelated token.
+Some registered networks do not have all three assets: Solana Devnet has no canonical USDT or DAI deployment, and the registry has no reliable DAI deployment for Sui or Aptos. Defunct Multichain assets on Fantom and Binance-Peg/DAI.e entries without issuer-native backing are also omitted. Those omissions are intentional and should be treated as unavailable data rather than as permission to substitute an unrelated token.
 
 Primary sources:
 

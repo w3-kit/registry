@@ -7,17 +7,17 @@ import {
   solanaClusterSchema,
 } from "./shared.js";
 
-export const rpcUrlSchema = z.object({
+export const rpcEndpointSchema = z.object({
   url: httpUrlSchema,
   provider: nonEmptyStringSchema,
   public: z.boolean(),
 });
 
-export const rpcUrlsSchema = z
-  .array(rpcUrlSchema)
+export const rpcEndpointsSchema = z
+  .array(rpcEndpointSchema)
   .min(2)
-  .superRefine((rpcUrls, ctx) => {
-    if (rpcUrls.filter((rpc) => rpc.public).length < 2) {
+  .superRefine((rpcEndpoints, ctx) => {
+    if (rpcEndpoints.filter((rpc) => rpc.public).length < 2) {
       ctx.addIssue({
         code: "custom",
         message: "At least two public RPC URLs are required",
@@ -37,13 +37,25 @@ export const chainSchema = z
       symbol: nonEmptyStringSchema,
       decimals: z.number().int().nonnegative(),
     }),
-    rpcUrls: rpcUrlsSchema,
+    rpcUrls: z.array(httpUrlSchema),
+    rpcEndpoints: rpcEndpointsSchema,
     blockExplorers: z.array(httpUrlSchema),
     faucets: z.array(httpUrlSchema),
     testnet: z.boolean(),
     learn: z.string(),
   })
   .superRefine((chain, ctx) => {
+    if (
+      chain.rpcUrls.length !== chain.rpcEndpoints.length ||
+      chain.rpcUrls.some((url, index) => url !== chain.rpcEndpoints[index].url)
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["rpcEndpoints"],
+        message: '"rpcUrls" must match the URLs in "rpcEndpoints" in the same order',
+      });
+    }
+
     if (chain.ecosystem === "solana" && !chain.cluster) {
       ctx.addIssue({
         code: "custom",

@@ -60,7 +60,8 @@ Add an entry to `data/chains.json`:
   "shortName": "eth",
   "ecosystem": "evm",
   "nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-  "rpcUrls": [
+  "rpcUrls": ["https://eth.llamarpc.com", "https://ethereum-rpc.publicnode.com"],
+  "rpcEndpoints": [
     { "url": "https://eth.llamarpc.com", "provider": "LlamaRPC", "public": true },
     { "url": "https://ethereum-rpc.publicnode.com", "provider": "PublicNode", "public": true }
   ],

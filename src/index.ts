@@ -1,7 +1,7 @@
 // Domain types (public)
 import type { Chain } from "./domain/entities/chain.js";
 export type { Chain };
-export type { RpcUrl } from "./domain/entities/chain.js";
+export type { RpcEndpoint } from "./domain/entities/chain.js";
 export type { SolanaProgram, SolanaProgramDeployment } from "./domain/entities/solana-program.js";
 export type { Token } from "./domain/entities/token.js";
 export type { ChainRepository } from "./domain/repositories/chain-repository.js";
