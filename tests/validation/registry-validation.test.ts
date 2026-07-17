@@ -13,6 +13,58 @@ describe("registry validation", () => {
     expect(validateRegistry()).toEqual([]);
   });
 
+  it("provides two public RPC fallbacks for every chain", () => {
+    chainsData.forEach((chain) => {
+      expect(chain.rpcEndpoints.length, chain.name).toBeGreaterThanOrEqual(2);
+      expect(
+        chain.rpcEndpoints.filter((rpc) => rpc.public).length,
+        chain.name,
+      ).toBeGreaterThanOrEqual(2);
+      expect(chain.rpcUrls).toEqual(chain.rpcEndpoints.map((rpc) => rpc.url));
+    });
+  });
+
+  it("rejects chains without two public RPC fallbacks", () => {
+    const data = cloneRegistryData();
+    data.chains[0].rpcEndpoints = data.chains[0].rpcEndpoints.map((rpc) => ({
+      ...rpc,
+      public: false,
+    }));
+
+    const issues = validateRegistryData(data);
+
+    expect(formatValidationIssues(issues)).toContain(
+      "chains.json:[0].rpcEndpoints - At least two public RPC URLs are required",
+    );
+  });
+
+  it("rejects mismatched legacy and structured RPC URLs", () => {
+    const data = cloneRegistryData();
+    data.chains[0].rpcUrls[0] = "https://different.example.com";
+
+    const issues = validateRegistryData(data);
+
+    expect(formatValidationIssues(issues)).toContain(
+      'chains.json:[0].rpcEndpoints - "rpcUrls" must match the URLs in "rpcEndpoints" in the same order',
+    );
+  });
+
+  it("keeps stablecoin coverage limited to canonical deployments", () => {
+    const expectedCoverage = {
+      USDC: [1, 10, 137, 42161, 43114, 8453, 101, 103, 324, 78272106, 27, 11155111],
+      USDT: [1, 10, 56, 137, 42161, 43114, 8453, 101, 324, 78272106, 27, 11155111],
+      DAI: [1, 10, 137, 42161, 8453, 101, 324, 11155111],
+    };
+
+    for (const [symbol, chainIds] of Object.entries(expectedCoverage)) {
+      const token = tokensData.find((entry) => entry.symbol === symbol);
+      expect(token, symbol).toBeDefined();
+      expect(token?.chains.map((entry) => entry.chainId).sort((a, b) => a - b)).toEqual(
+        chainIds.sort((a, b) => a - b),
+      );
+    }
+  });
+
   it("reports missing required fields", () => {
     const data = cloneRegistryData();
     delete data.chains[0].name;
